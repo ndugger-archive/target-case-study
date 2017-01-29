@@ -16,19 +16,34 @@ export const Page = Styled.main`
     }
 `;
 
-export const FlexContainer = Styled.section`
-    flex: 1 1;
-    display: flex;
+export const Grid = Styled.section`
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+`;
+
+Grid.Half = Styled.section`
+    float: left;
+    width: 50%;
+    padding: 4px;
+    box-sizing: border-box;
+
+    &:nth-of-type(2n) {
+        float: right
+    }
 
     @media (max-width: 500px) {
-        flex-basis: 100%;
-        flex-wrap: wrap;
+        width: 100%;
     }
 `;
 
-export const FlexItem = Styled.article`
+export const Flex = Styled.div`
+    display: flex;
+`;
+
+Flex.Item = Styled.div`
     flex: 1 1;
-    margin: 0 4px;
+    margin: 4px;
 
     &:first-of-type {
         margin-left: 0;

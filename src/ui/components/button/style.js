@@ -3,11 +3,11 @@ import Styled from 'styled-components';
 export const Button = Styled.button`
     cursor: pointer;
     width: 100%;
-    padding: 8px 20px;
+    padding: 8px ${ props => props['data-size'] === 'small' ? '14px' : '20px' };
     text-transform: uppercase;
     font-family: inherit;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: ${ props => props['data-size'] === 'small' ? '12px' : '18px' };
+    font-weight: ${ props => props['data-size'] === 'small' ? 400 : 300 };;
     border-radius: 2px;
     outline: none;
     box-shadow: inset 0 4px 12px rgba(255, 255, 255, 0.5);
@@ -22,6 +22,6 @@ export const Button = Styled.button`
     }
 
     @media (max-width: 500px) {
-        font-size: 14px;
+        font-size: ${ props => props['data-size'] === 'small' ? '10px' : '14px' };
     }
 `;

@@ -18,14 +18,12 @@ export const Page = Styled.main`
 
 export const Grid = Styled.section`
     width: 100%;
-    padding: 4px;
-    box-sizing: border-box;
 `;
 
 Grid.Half = Styled.section`
     float: left;
     width: 50%;
-    padding: 4px;
+    padding: 8px;
     box-sizing: border-box;
 
     &:nth-of-type(2n) {

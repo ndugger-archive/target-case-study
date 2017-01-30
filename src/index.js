@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Button, Heading, Price, Promotion, ReturnPolicy } from './ui/components';
+import { Button, Heading, Price, ProductHighlight, Promotion, ReturnPolicy } from './ui/components';
 
 import * as Style from './ui/style';
 
 class ProductPage extends Component {
 
+    get canPickUpInStore () {
+        const { purchasingChannelCode } = this.props.data;
+        return purchasingChannelCode === '0' || purchasingChannelCode === '2';
+    }
+
+    get canAddToCart () {
+        const { purchasingChannelCode } = this.props.data;
+        return purchasingChannelCode === '0' || purchasingChannelCode === '1';
+    }
+
     render () {
+        const { title, Offers, ItemDescription } = this.props.data;
+        const { formattedPriceValue, priceQualifier } = Offers[ 0 ].OfferPrice[ 0 ];
+        const { features } = ItemDescription[ 0 ];
 
         return (
             <Style.Page>
@@ -16,13 +29,13 @@ class ProductPage extends Component {
 
                     <Style.Grid.Half>
 
-                        <Heading>Ninja Professional Blender with Single Serve Blending Cups</Heading>
+                        <Heading>{ title }</Heading>
 
                     </Style.Grid.Half>
 
                     <Style.Grid.Half>
 
-                        <Price>$139.99</Price>
+                        <Price type={ priceQualifier }>{ formattedPriceValue }</Price>
 
                         <Promotion.List>
                             <Promotion>spend $50, free shipping</Promotion>
@@ -31,10 +44,14 @@ class ProductPage extends Component {
 
                         <Style.Flex>
                             <Style.Flex.Item>
-                                <Button.Secondary>Pick Up In Store</Button.Secondary>
+                                { this.canPickUpInStore && (
+                                    <Button.Secondary>Pick Up In Store</Button.Secondary>
+                                ) }
                             </Style.Flex.Item>
                             <Style.Flex.Item>
-                                <Button>Add to Cart</Button>
+                                { this.canAddToCart && (
+                                    <Button>Add to Cart</Button>
+                                ) }
                             </Style.Flex.Item>
                         </Style.Flex>
 
@@ -55,6 +72,14 @@ class ProductPage extends Component {
                             </Style.Flex.Item>
                         </Style.Flex>
 
+                        <ProductHighlight.List>
+                            { features.map(feature => (
+                                <ProductHighlight key={ feature }>
+                                    { feature.replace(/<.+?>/g, '') }
+                                </ProductHighlight>
+                            )) }
+                        </ProductHighlight.List>
+
                     </Style.Grid.Half>
 
                     <Style.Grid.Half>
@@ -68,4 +93,6 @@ class ProductPage extends Component {
     }
 }
 
-ReactDOM.render(<ProductPage/>, document.getElementById('app'));
+fetch('./item-data.json')
+.then(response => response.json())
+.then(data => ReactDOM.render(<ProductPage data={ data.CatalogEntryView[ 0 ] }/>, document.getElementById('app')));

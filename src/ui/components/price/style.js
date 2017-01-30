@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
 export const Price = Styled.h2`
-    margin: 0 0 24px;
+    margin: 0 0 32px;
     padding: 0;
     font-size: 28px;
     font-weight: 700;
@@ -14,4 +14,5 @@ export const Price = Styled.h2`
 export const PriceType = Styled.span`
     font-size: 14px;
     font-weight: 400;
+    text-transform: lowercase;
 `

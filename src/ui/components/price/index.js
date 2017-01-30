@@ -5,11 +5,11 @@ import * as Style from './style';
 export default class Price extends Component {
 
     render () {
-        const { children } = this.props;
+        const { children, type } = this.props;
 
         return (
             <Style.Price>
-                { children } <Style.PriceType>online price</Style.PriceType>
+                { children } <Style.PriceType>{ type }</Style.PriceType>
             </Style.Price>
         )
     }

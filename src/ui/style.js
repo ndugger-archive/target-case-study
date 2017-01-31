@@ -5,7 +5,7 @@ import { black, white } from './palette';
 export const Page = Styled.main`
     box-sizing: border-box;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1024px;
     margin: 50px auto;
     font-family: 'Roboto', sans-serif;
     color: ${ black };
@@ -23,7 +23,7 @@ export const Grid = Styled.section`
 Grid.Half = Styled.section`
     float: left;
     width: 50%;
-    padding: 8px;
+    padding: 16px;
     box-sizing: border-box;
 
     &:nth-of-type(2n) {
@@ -32,6 +32,7 @@ Grid.Half = Styled.section`
 
     @media (max-width: 500px) {
         width: 100%;
+        padding: 4px;
     }
 `;
 

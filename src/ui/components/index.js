@@ -6,3 +6,4 @@ export ProductHighlight from './product-highlight';
 export Promotion from './promotion';
 export Responsive from './responsive';
 export ReturnPolicy from './return-policy';
+export Reviews from './reviews';

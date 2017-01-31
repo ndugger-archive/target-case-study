@@ -1,10 +1,10 @@
 import Styled from 'styled-components';
 
-import { primary } from '../../palette';
+import { link } from '../../palette';
 
 export const Link = Styled.a`
     font-weight: 700;
-    color: ${ primary };
+    color: ${ link };
     text-decoration: none;
 
     &:hover {

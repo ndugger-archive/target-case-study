@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Button, Heading, Link, Price, ProductHighlight, Promotion, Rating, Responsive, ReturnPolicy, Reviews } from './ui/components';
+import {
+    Button,
+    Heading,
+    Link,
+    Price,
+    ProductHighlight,
+    Promotion,
+    Quantity,
+    Rating,
+    Responsive,
+    ReturnPolicy,
+    Reviews
+} from './ui/components';
 
 import * as Style from './ui/style';
 
@@ -45,6 +57,8 @@ class ProductPage extends Component {
                                 </Promotion>
                             )) }
                         </Promotion.List>
+
+                        <Quantity/>
 
                         <Style.Flex>
                             <Style.Flex.Item style={ { textAlign: 'center' } }>

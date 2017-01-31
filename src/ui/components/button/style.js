@@ -20,7 +20,7 @@ export const Button = Styled.button`
     transition: all .1s ease;
 
     &:hover {
-        opacity: 0.85;
+        opacity: 0.8;
     }
 
     &:active {

@@ -12,7 +12,7 @@ export default class Promotion extends Component {
 
         return (
             <Style.Promotion>
-                { children }
+                <Style.PromotionIcon glyph='local_offer'/> { children }
             </Style.Promotion>
         )
     }

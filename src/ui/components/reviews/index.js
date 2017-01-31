@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'moment';
 
 import Link from '../link';
+import Rating from '../rating';
 import * as Style from './style';
 
 export default class Reviews extends Component {
@@ -13,8 +14,8 @@ export default class Reviews extends Component {
 
     render () {
         const { children, pro, con } = this.props;
-        const proDate = Moment(new Date(pro.datePosted)).format('MMM D, YYYY');
-        const conDate = Moment(new Date(con.datePosted)).format('MMM D, YYYY');
+        const proDate = Moment(new Date(pro.datePosted)).format('MMMM D, YYYY');
+        const conDate = Moment(new Date(con.datePosted)).format('MMMM D, YYYY');
 
         return (
             <Style.ReviewsContainer>
@@ -26,6 +27,7 @@ export default class Reviews extends Component {
                             most useful 4-5 star review
                         </Style.ReviewTypeDescription>
                     </Style.ReviewType>
+                    <Rating value={ Number(pro.overallRating) } starSize={ 16 }/>
                     <Style.ReviewTitle>{ pro.title }</Style.ReviewTitle>
                     <Style.ReviewContent>{ pro.review }</Style.ReviewContent>
                     <Style.ReviewAuthor>
@@ -40,6 +42,7 @@ export default class Reviews extends Component {
                             most useful 1-2 star review
                         </Style.ReviewTypeDescription>
                     </Style.ReviewType>
+                    <Rating value={ Number(con.overallRating) } starSize={ 16 }/>
                     <Style.ReviewTitle>{ con.title }</Style.ReviewTitle>
                     <Style.ReviewContent>{ con.review }</Style.ReviewContent>
                     <Style.ReviewAuthor>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Button, Heading, Link, Price, ProductHighlight, Promotion, Responsive, ReturnPolicy, Reviews } from './ui/components';
+import { Button, Heading, Link, Price, ProductHighlight, Promotion, Rating, Responsive, ReturnPolicy, Reviews } from './ui/components';
 
 import * as Style from './ui/style';
 
@@ -19,8 +19,8 @@ class ProductPage extends Component {
 
     render () {
         const { title, CustomerReview, Offers, ItemDescription, Promotions } = this.props.data;
+        const { totalReviews, Pro: [ proReview ], Con: [ conReview ], consolidatedOverallRating } = CustomerReview[ 0 ];
         const { formattedPriceValue, priceQualifier } = Offers[ 0 ].OfferPrice[ 0 ];
-        const { totalReviews, Pro: [ proReview ], Con: [ conReview ] } = CustomerReview[ 0 ];
         const { features } = ItemDescription[ 0 ];
 
         return (
@@ -95,11 +95,10 @@ class ProductPage extends Component {
                     </Style.Grid.Half>
 
                     <Style.Grid.Half>
-                        
 
-                        <Style.Flex>
+                        <Style.Flex style={ { alignItems: 'baseline' } }>
                             <Style.Flex.Item>
-                                rating here
+                                <Rating value={ Number(consolidatedOverallRating) }/>
                             </Style.Flex.Item>
                             <Style.Flex.Item style={ { textAlign: 'right' } }>
                                 <Link style={ { fontSize: 14, color: 'inherit' } }>

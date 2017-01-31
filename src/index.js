@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Button, Heading, Price, ProductHighlight, Promotion, ReturnPolicy } from './ui/components';
+import { Button, Heading, Link, Price, ProductHighlight, Promotion, Responsive, ReturnPolicy } from './ui/components';
 
 import * as Style from './ui/style';
 
@@ -18,8 +18,9 @@ class ProductPage extends Component {
     }
 
     render () {
-        const { title, Offers, ItemDescription } = this.props.data;
+        const { title, CustomerReview, Offers, ItemDescription, Promotions } = this.props.data;
         const { formattedPriceValue, priceQualifier } = Offers[ 0 ].OfferPrice[ 0 ];
+        const { totalReviews } = CustomerReview[ 0 ];
         const { features } = ItemDescription[ 0 ];
 
         return (
@@ -38,15 +39,25 @@ class ProductPage extends Component {
                         <Price type={ priceQualifier }>{ formattedPriceValue }</Price>
 
                         <Promotion.List>
-                            <Promotion>spend $50, free shipping</Promotion>
-                            <Promotion>$25 gift card with purchase</Promotion>
+                            { Promotions.map(promotion => (
+                                <Promotion key={ promotion.promotionIdentifier }>
+                                    { promotion.Description[ 0 ].shortDescription }
+                                </Promotion>
+                            )) }
                         </Promotion.List>
 
                         <Style.Flex>
-                            <Style.Flex.Item>
-                                { this.canPickUpInStore && (
-                                    <Button.Secondary>Pick Up In Store</Button.Secondary>
-                                ) }
+                            <Style.Flex.Item style={ { textAlign: 'center' } }>
+                                { this.canPickUpInStore && [
+                                    <Button.Secondary key='pick up in store'>
+                                        Pick Up In Store
+                                    </Button.Secondary>,
+                                    <Responsive minWidth={ 500 } key='find in a store'>
+                                        <Link style={ { fontSize: 14, color: 'inherit' } }>
+                                            find in a store
+                                        </Link>
+                                    </Responsive>
+                                ] }
                             </Style.Flex.Item>
                             <Style.Flex.Item>
                                 { this.canAddToCart && (
@@ -56,7 +67,8 @@ class ProductPage extends Component {
                         </Style.Flex>
 
                         <ReturnPolicy>
-                            This item must be returned within 30 days of the ship date. See return policy for details.
+                            This item must be returned within 30 days of the ship date.
+                            See <Link style={ { color: 'inherit' } }>return policy</Link> for details.
                             Prices, promotions, styles and availability may vary by store and online.
                         </ReturnPolicy>
 
@@ -83,7 +95,14 @@ class ProductPage extends Component {
                     </Style.Grid.Half>
 
                     <Style.Grid.Half>
-                        reviews here
+
+                        <Style.Flex>
+                            <Style.Flex.Item>rating here</Style.Flex.Item>
+                            <Style.Flex.Item style={ { textAlign: 'right' } }>
+                                <Link style={ { color: 'inherit' } }>view all { totalReviews } reviews</Link>
+                            </Style.Flex.Item>
+                        </Style.Flex>
+
                     </Style.Grid.Half>
 
                 </Style.Grid>
@@ -95,4 +114,7 @@ class ProductPage extends Component {
 
 fetch('./item-data.json')
 .then(response => response.json())
-.then(data => ReactDOM.render(<ProductPage data={ data.CatalogEntryView[ 0 ] }/>, document.getElementById('app')));
+.then(data => ReactDOM.render(
+    <ProductPage data={ data.CatalogEntryView[ 0 ] }/>,
+    document.getElementById('app')
+));

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "webpack",
+    "test": "node ./node_modules/jest/bin/jest",
     "server": "node ./node_modules/http-server/bin/http-server"
   },
   "repository": {
@@ -24,10 +25,15 @@
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
+    "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "enzyme": "^2.7.1",
+    "jest": "^18.1.0",
+    "react-addons-test-utils": "^15.4.2",
     "webpack": "^1.14.0"
   }
 }

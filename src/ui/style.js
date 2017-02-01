@@ -6,7 +6,7 @@ export const Page = Styled.main`
     box-sizing: border-box;
     width: 100%;
     max-width: 1024px;
-    margin: 50px auto;
+    margin: 32px auto;
     font-family: 'Roboto', sans-serif;
     color: ${ black };
     background: ${ white };

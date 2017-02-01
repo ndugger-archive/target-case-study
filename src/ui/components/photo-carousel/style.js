@@ -26,6 +26,10 @@ export const PhotoCarouselThumbnailButton = Styled(Icon)`
     font-size: 40px;
     line-height: 64px;
     vertical-align: middle;
+
+    &:hover {
+        opacity: 0.8;
+    }
 `;
 
 export const PhotoCarouselThumbnail = Styled.div`
@@ -39,4 +43,8 @@ export const PhotoCarouselThumbnail = Styled.div`
     background-position: center center;
     background-repeat: no-repeat;
     box-shadow: ${ props => props.current ? `0 0 0 1px ${ medium }` : 'none' };
+
+    &:hover {
+        opacity: 0.8;
+    }
 `;

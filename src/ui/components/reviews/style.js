@@ -6,6 +6,7 @@ export const ReviewsContainer = Styled.section`
     margin: 8px 0;
     padding: 16px;
     background: ${ grey };
+    border-radius: 2px;
 
     @media (max-width: 500px) {
         padding: 0 16px;

@@ -19,8 +19,12 @@ There are some small differences in my product vs the design that I'm more than
 willing to speak to and explain my decisions.
 
 ## Getting Started
+First things first, let's install the project's dependencies via:
+
+`npm install`
+
 Since the code is ES6+, you will need to build the code; I decided to go with
-webpack + babel. You can run the build process via:
+Webpack + Babel. You can run the build process via:
 
 `npm run build`
 

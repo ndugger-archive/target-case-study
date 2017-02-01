@@ -2,6 +2,7 @@ export Button from './button';
 export Heading from './heading';
 export Icon from './icon';
 export Link from './link';
+export PhotoCarousel from './photo-carousel';
 export Price from './price';
 export ProductHighlight from './product-highlight';
 export Promotion from './promotion';

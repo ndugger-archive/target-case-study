@@ -5,6 +5,7 @@ import {
     Button,
     Heading,
     Link,
+    PhotoCarousel,
     Price,
     ProductHighlight,
     Promotion,
@@ -30,10 +31,12 @@ class ProductPage extends Component {
     }
 
     render () {
-        const { title, CustomerReview, Offers, ItemDescription, Promotions } = this.props.data;
+        const { title, CustomerReview, Offers, Images, ItemDescription, Promotions } = this.props.data;
         const { totalReviews, Pro: [ proReview ], Con: [ conReview ], consolidatedOverallRating } = CustomerReview[ 0 ];
         const { formattedPriceValue, priceQualifier } = Offers[ 0 ].OfferPrice[ 0 ];
         const { features } = ItemDescription[ 0 ];
+        const { PrimaryImage, AlternateImages: images } = Images[ 0 ];
+        const { image: primaryImage } = PrimaryImage[ 0 ];
 
         return (
             <Style.Page>
@@ -43,6 +46,8 @@ class ProductPage extends Component {
                     <Style.Grid.Half>
 
                         <Heading>{ title }</Heading>
+
+                        <PhotoCarousel photos={ [ primaryImage, ...images.map(x => x.image) ] }/>
 
                     </Style.Grid.Half>
 
@@ -111,8 +116,8 @@ class ProductPage extends Component {
                     <Style.Grid.Half>
 
                         <Style.Flex style={ { alignItems: 'baseline' } }>
-                            <Style.Flex.Item>
-                                <Rating value={ Number(consolidatedOverallRating) }/>
+                            <Style.Flex.Item style={ { fontWeight: 700 } }>
+                                <Rating value={ Number(consolidatedOverallRating) }/> overall
                             </Style.Flex.Item>
                             <Style.Flex.Item style={ { textAlign: 'right' } }>
                                 <Link style={ { fontSize: 14, color: 'inherit' } }>

@@ -38,6 +38,7 @@ Grid.Half = Styled.section`
 
 export const Flex = Styled.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 Flex.Item = Styled.div`
@@ -50,5 +51,10 @@ Flex.Item = Styled.div`
 
     &:last-of-type {
         margin-right: 0;
+    }
+
+    @media (max-width: 320px) {
+        flex: 1 0 100%;
+        margin: 4px 0;
     }
 `;
